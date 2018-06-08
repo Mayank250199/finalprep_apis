@@ -9,18 +9,18 @@ var User = require(__root + 'models/User');
 
 // CREATES A NEW USER
 router.post('/', function (req, res, next) {
-var firstName = req.body.firstName;
-var lastName = req.body.lastName;
+var firstname = req.body.firstname;
+var lastname = req.body.lastname;
 var email = req.body.email;
 var password = req.body.password;
 
-  if( !firstName){
+  if( !firstname){
     return res.send({
       success :false,
        message:'Error:FirstName can\'t be Blank'
     });
   }
-  if ( !lastName ){
+  if ( !lastname ){
     return res.send({
       success :false,
        message:'Error:LastName can\'t be Blank'
@@ -56,8 +56,8 @@ if(email){
      })
    }else{
      const newUser = new User();
-   newUser.firstname = firstName;
-   newUser.lastname = lastName;
+   newUser.firstname = firstname;
+   newUser.lastname = lastname;
    newUser.email = email;
    newUser.password = newUser.generateHash(password);
 

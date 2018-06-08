@@ -21,6 +21,9 @@ app.use('/api/users', UserController);
 var AuthController = require(__root + 'auth/AuthController');
 app.use('/api/auth', AuthController);
 
+var UploadController = require(__root + 'user/UploadController');
+app.use('/api/upload', UploadController);
+
 var port = process.env.PORT || 3000;
 
 var server = app.listen(port, function() {
