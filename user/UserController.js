@@ -9,11 +9,11 @@ var User = require('./User');
 
 // CREATES A NEW USER
 router.post('/', function (req, res, next) {
-
 var firstName = req.body.firstName;
 var lastName = req.body.lastName;
 var email = req.body.email;
 var password = req.body.password;
+
   if( !firstName){
     return res.send({
       success :false,
@@ -39,15 +39,8 @@ var password = req.body.password;
     });
   }
 
-
-
   email = email.toLowerCase();
-
-   /*
-   *Steps
-   1.Email doesn't exist
-   2.save
-   */
+if(email){
    User.find({
      email:email
    },(err,previousUsers)=>{
@@ -59,33 +52,32 @@ var password = req.body.password;
    }else if(previousUsers.length>0){
        return res.send({
        success:false,
-       message:"Error:Account already exist"
+       message:"Error:Email ID already exist"
+     })
+   }else{
+     const newUser = new User();
+   newUser.firstname = firstName;
+   newUser.lastname = lastName;
+   newUser.email = email;
+   newUser.password = newUser.generateHash(password);
+
+   newUser.save((err,user) =>{
+     if(err){
+       return res.send({
+       success:false,
+       message:"Error:server Error"
      })
    }
+       return res.send({
+       success:true,
+       message:"Signup successfully!!"
+     })
+
+   })
+   }
 });
-
-//save User
-const newUser = new User();
-newUser.firstname = firstName;
-newUser.lastname = lastName;
-newUser.email = email;
-newUser.password = newUser.generateHash(password);
-
-newUser.save((err,user) =>{
-  if(err){
-    return res.send({
-    success:false,
-    message:"Error:server Error"
-  })
 }
-    return res.send({
-    success:true,
-    message:"signup!!"
-  })
-
-})
 });
-
 
 // RETURNS ALL THE USERS IN THE DATABASE
 router.get('/',VerifyToken,function (req, res) {
