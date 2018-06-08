@@ -1,9 +1,31 @@
-var mongoose = require('mongoose');  
-var UserSchema = new mongoose.Schema({  
-  name: String,
-  email: String,
-  password: String
-});
-mongoose.model('User', UserSchema);
+var mongoose = require('mongoose');
+var bcrypt = require('bcrypt');
 
-module.exports = mongoose.model('User');
+var UserSchema = new mongoose.Schema({
+  firstname: {
+    type: String,
+    default: 'hello'
+  },
+  lastname: {
+    type: String,
+    default: ''
+  },
+  email: {
+    type: String,
+    default: ''
+  },
+  password: {
+    type: String,
+    default: ''
+  }
+});
+
+UserSchema.methods.generateHash = function(Password){
+  return bcrypt.hashSync(Password, bcrypt.genSaltSync(8),null);
+};
+
+UserSchema.methods.validPassword = function(Password){
+  return bcrypt.compareSync(Password,this.Password,null);
+};
+
+module.exports = mongoose.model('User', UserSchema);
