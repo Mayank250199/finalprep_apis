@@ -6,7 +6,7 @@ var VerifyToken = require('./VerifyToken');
 
 router.use(bodyParser.urlencoded({ extended: false }));
 router.use(bodyParser.json());
-var User = require('../user/User');
+var User = require(__root + 'models/User');
 
 /**
  * Configure JWT
