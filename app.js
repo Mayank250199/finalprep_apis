@@ -3,13 +3,13 @@ var app = express();
 var db = require('./db');
 var bodyParser = require('body-parser');
 var multer = require('multer');
-var file = multer({ dest: 'uploads/' });
+var file = multer({ dest: '/uploads/' });
 global.__root   = __dirname + '/';
 
 // BodyParser Middleware
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(file.array());
+app.use(bodyParser.urlencoded({extended:false}));
+app.use('/uploads',express.static('uploads'))
 
 app.get('/api', function (req, res) {
   res.status(200).send('API works.');
