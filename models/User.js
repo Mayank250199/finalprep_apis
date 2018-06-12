@@ -4,7 +4,7 @@ var bcrypt = require('bcrypt');
 var UserSchema = new mongoose.Schema({
   firstname: {
     type: String,
-    default: 'hello'
+    default: ''
   },
   lastname: {
     type: String,

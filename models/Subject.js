@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 var SubjectSchema = new mongoose.Schema({
   subject: {
     type: String,
-    default: 'hello'
+    default: ''
   },
   fileName:{
       type: String,
