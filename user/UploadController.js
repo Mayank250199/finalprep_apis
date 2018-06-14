@@ -12,7 +12,7 @@ var Subject = require(__root + 'models/Subject');
 //storage method in multer
 var storage =   multer.diskStorage({
   destination: function (req, file, callback) {
-    callback(null, './uploads/');
+    callback(null, './uploads/Notes');
   },
   filename: function (req, file, callback) {
     callback(null,  Date.now()+ '-' +file.originalname);

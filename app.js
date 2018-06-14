@@ -24,6 +24,9 @@ app.use('/api/auth', AuthController);
 var UploadController = require(__root + 'user/UploadController');
 app.use('/api/upload', UploadController);
 
+var CollegeController = require(__root + 'user/CollegeController');
+app.use('/api/college', CollegeController);
+
 var port = process.env.PORT || 3000;
 
 var server = app.listen(port, function() {

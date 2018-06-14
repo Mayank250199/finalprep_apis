@@ -5,11 +5,17 @@ var CollegeSchema = new mongoose.Schema({
     type: String,
     default: ''
   },
-  year_of_esblishment: {
+  profile_pic:[{
+    pic:{
+      type:String,
+    default: ''
+  }
+}],
+establishment: {
       type: String,
       default: ''
   },
-  connectivity: {[
+  connectivity: [{
     mode: {
       type:String,
       default:''
@@ -21,19 +27,18 @@ var CollegeSchema = new mongoose.Schema({
     distance: {
       type: Number,
       default: ''
-    }
-    description: {
+    },
+    connectivity_description: {
       type:String,
       default:''
     }
-  ]},
-  ranking: {[
-    type:{
+  }],
+  ranking: [{
+    ranking_type:{
       type: String,
       default: ''
     },
-    description: {[
-      givenby: {
+      given_by: {
         type: String,
         default: ''
       },
@@ -41,9 +46,8 @@ var CollegeSchema = new mongoose.Schema({
           type: Number,
           default: ''
         }
-      ]}
-  ]},
-  fee:{[
+  }],
+  fee:[{
     paritcular: {
       type:String,
       default: ''
@@ -52,19 +56,19 @@ var CollegeSchema = new mongoose.Schema({
       type:Number,
       default: ''
     }
-  ]},
-  affiliation: {[
+  }],
+  affiliation: [{
     affiliated:{
       type:String,
       default:''
     }
-  ]},
-  placement: {[
+  }],
+  placement: [{
     year: {
       type:Number,
       default:''
     },
-  placement_statistics: {[
+  placement_statistics: [{
       company: {
         type:String,
         default:''
@@ -73,9 +77,9 @@ var CollegeSchema = new mongoose.Schema({
         type:Number,
         default:''
       }
-    ]},
-  company_statistics: {[
-      company: {
+    }],
+  company_statistics: [{
+      company_name: {
         type:String,
         default:''
       },
@@ -83,9 +87,9 @@ var CollegeSchema = new mongoose.Schema({
         type:Number,
         default:''
       }
-       ]}
-    ]},
-  cutoff: {[
+    }]
+  }],
+  cutoff: [{
     year: {
       type:Number,
       default:''
@@ -94,7 +98,7 @@ var CollegeSchema = new mongoose.Schema({
       type:Number,
       default:''
     },
-    round: {[
+    round: [{
       region:{
         type:String,
         default:''
@@ -107,10 +111,9 @@ var CollegeSchema = new mongoose.Schema({
         type:Number,
         default:''
       }
-      }]
-
-    ]}
+    }]
+  }]
 
 });
 
-module.exports = mongoose.model('College', SubjectSchema);
+module.exports = mongoose.model('College', CollegeSchema);
