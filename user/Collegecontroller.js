@@ -288,6 +288,12 @@ router.post('/',upload.single('upload_file'), function(req, res) {
 
           router.put('/profilepic/:id',upload.single('upload_file'),function (req, res) {
 
+            if(!req.file){
+                return res.send({
+                success :false,
+                 message:'Error:upload_file can\'t be Blank'
+              });
+            }
               var profile_pic = req.file.path;
 
               College.findByIdAndUpdate(req.params.id,
