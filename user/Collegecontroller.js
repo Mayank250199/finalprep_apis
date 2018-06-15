@@ -34,18 +34,17 @@ router.post('/',upload.single('upload_file'), function(req, res) {
 
   var collegename = req.body.collegename;
   var establishment = req.body.establishment;
-  var fileName = req.body.fileName;
   var profile_pic = req.file.path;
   var connectivity_mode = req.body.connectivity_mode;
   var connectivity_nearest = req.body.connectivity_nearest;
   var connectivity_distance = req.body.connectivity_distance;
   var connectivity_description = req.body.connectivity_description;
   var ranking_type = req.body.ranking_type;
-  var ranking_description_givenby = req.body.ranking_description_givenby;
-  var ranking_description_rank = req.body.ranking_description_rank;
+  var ranking_givenby = req.body.ranking_givenby;
+  var ranking_rank = req.body.ranking_rank;
   var fee_particular = req.body.fee_particular;
   var fee_amount = req.body.fee_amount;
-  var affiliation = req.body.affiliated;
+  var affiliation = req.body.affiliation;
   var placement_year = req.body.placement_year;
   var placement_placement_statistics_company_name = req.body.placement_placement_statistics_company_name;
   var placement_placement_statistics_no_of_offer = req.body.placement_placement_statistics_no_of_offer;
@@ -61,44 +60,50 @@ router.post('/',upload.single('upload_file'), function(req, res) {
       const newCollege = new College();
       newCollege.collegename = collegename;
       newCollege.establishment = establishment;
-      newCollege.fileName = fileName;
-      newCollege.profile_pic.pic = req.file.path;
-      newCollege.connectivity.mode = connectivity_mode;
-      newCollege.connectivity.nearest = connectivity_nearest;
-      newCollege.connectivity.distance = connectivity_distance;
-      newCollege.connectivity.connectivity_description = connectivity_description;
-      newCollege.ranking.rank_type = ranking_type;
-      newCollege.ranking.given_by = ranking_description_givenby;
-      newCollege.ranking.rank = ranking_description_rank;
-      newCollege.fee.particular = fee_particular;
-      newCollege.fee.amount = fee_amount;
-      newCollege.affiliation.affiliated = affiliation;
-      newCollege.placement.year = placement_year;
-      newCollege.placement.placement_statistics.company_name = placement_placement_statistics_company_name;
-      newCollege.placement.placement_statistics.no_of_offer = placement_placement_statistics_no_of_offer;
-      newCollege.placement.company_statistics.company_name = placement_company_statistics_company_name;
-      newCollege.placement.company_statistics.cto = placement_company_statistics_cto;
-      newCollege.cutoff.year = cutoff_year;
-      newCollege.cutoff.category = cutoff_category;
-      newCollege.cutoff.round.region = cutoff_round_region;
-      newCollege.cutoff.round.branch = cutoff_round_branch;
-      newCollege.cutoff.round.cutoff = cutoff_round_cutoff;
+      newCollege.profile_pic.push(req.file.path);
+      newCollege.connectivity.push({mode:connectivity_mode,nearest:connectivity_nearest,distance:connectivity_distance,connectivity_description:connectivity_description});
+      newCollege.ranking.push({rank_type:ranking_type,ranking_givenby:ranking_givenby,ranking_rank:ranking_rank});
+      newCollege.fee.push({particular:fee_particular,fee_amount:fee_amount});
+      newCollege.affiliation.push(affiliation);
+      newCollege.placement.push({year:placement_year,placement_statistics:{company_name:placement_placement_statistics_company_name, no_of_offer:placement_placement_statistics_no_of_offer},company_statistics:{company_name:placement_company_statistics_company_name, cto:placement_company_statistics_cto}});
+      newCollege.cutoff.push({cutoff_year:cutoff_year,cutoff_category:cutoff_category,round:{region:cutoff_round_region,branch:cutoff_round_branch,cutoff:cutoff_round_cutoff}});
 
-    newSubject.save((err,user) =>{
+    newCollege.save((err,user) =>{
       if(err){
-        return res.send({
-        success:false,
-        message:"Error:server Error"
-      })
-    }
+        // return res.send({
+        // success:false,
+        // message:"Error:server Error"
+        throw(err);
+      }
         return res.send({
         success:true,
-        message:"Subject Upload successfully!!"
+        message:"College Upload successfully!!"
       })
 
     })
     });
 
+  // RETURNS ALL THE USERS IN THE DATABASE
+    router.get('/',function (req, res) {
+        College.find({}, function (err, colleges) {
+            if (err) return res.status(500).send("There was a problem finding the users.");
+            res.status(200).send(colleges);
+        });
+    });
 
+    // DELETES A USER FROM THE DATABASE
+    router.delete('/:id', function (req, res) {
+        College.findByIdAndRemove(req.params.id, function (err, college) {
+            if (err) return res.status(500).send("There was a problem deleting the user.");
+            res.status(200).send("College: "+ college.collegename +" was deleted.");
+        });
+    });
+
+    router.put('/:id',VerifyToken, function (req, res) {
+        College.findByIdAndUpdate(req.params.id, req.body, {new: true}, function (err, college) {
+            if (err) return res.status(500).send("There was a problem updating the user.");
+            res.status(200).send(college);
+        });
+     });
 
 module.exports = router;

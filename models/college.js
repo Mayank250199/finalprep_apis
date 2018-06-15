@@ -6,10 +6,8 @@ var CollegeSchema = new mongoose.Schema({
     default: ''
   },
   profile_pic:[{
-    pic:{
       type:String,
     default: ''
-  }
 }],
 establishment: {
       type: String,
@@ -18,11 +16,11 @@ establishment: {
   connectivity: [{
     mode: {
       type:String,
-      default:''
+      default:' '
     },
     nearest: {
       type:String,
-      default:''
+      default:' '
     },
     distance: {
       type: Number,
@@ -38,30 +36,28 @@ establishment: {
       type: String,
       default: ''
     },
-      given_by: {
+      ranking_givenby: {
         type: String,
         default: ''
       },
-        rank: {
+        ranking_rank: {
           type: Number,
           default: ''
         }
   }],
   fee:[{
-    paritcular: {
+    particular: {
       type:String,
       default: ''
     },
-    amount: {
+    fee_amount: {
       type:Number,
       default: ''
     }
   }],
   affiliation: [{
-    affiliated:{
       type:String,
       default:''
-    }
   }],
   placement: [{
     year: {
@@ -69,7 +65,7 @@ establishment: {
       default:''
     },
   placement_statistics: [{
-      company: {
+      company_name: {
         type:String,
         default:''
       },
@@ -90,12 +86,12 @@ establishment: {
     }]
   }],
   cutoff: [{
-    year: {
+    cutoff_year: {
       type:Number,
       default:''
     },
-    category:{
-      type:Number,
+    cutoff_category:{
+      type:String,
       default:''
     },
     round: [{
