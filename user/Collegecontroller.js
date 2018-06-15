@@ -56,6 +56,18 @@ router.post('/',upload.single('upload_file'), function(req, res) {
   var cutoff_round_branch = req.body.cutoff_round_branch;
   var cutoff_round_cutoff = req.body.cutoff_round_cutoff;
 
+  if( !collegename){
+    return res.send({
+      success :false,
+       message:'Error:collegename can\'t be Blank'
+    });
+  }
+  if ( !establishment ){
+    return res.send({
+      success :false,
+       message:'Error:establishment can\'t be Blank'
+    });
+  }
 
       const newCollege = new College();
       newCollege.collegename = collegename;
@@ -114,6 +126,37 @@ router.post('/',upload.single('upload_file'), function(req, res) {
        var cutoff_round_branch = req.body.cutoff_round_branch;
        var cutoff_round_cutoff = req.body.cutoff_round_cutoff;
 
+       if( !cutoff_year){
+         return res.send({
+           success :false,
+            message:'Error:cutoff_year can\'t be Blank'
+         });
+       }
+       if ( !cutoff_category ){
+         return res.send({
+           success :false,
+            message:'Error:cutoff_category can\'t be Blank'
+         });
+       }
+       if(!cutoff_round_region){
+           return res.send({
+           success :false,
+            message:'Error:cutoff_round_region can\'t be Blank'
+         });
+       }
+       if(!cutoff_round_branch){
+         return res.send({
+           success :false,
+            message:'Error:cutoff_round_branch can\'t be Blank'
+         });
+       }
+       if(!cutoff_round_cutoff){
+         return res.send({
+           success :false,
+            message:'Error:cutoff_round_cutoff can\'t be Blank'
+         });
+       }
+
          College.findByIdAndUpdate(req.params.id,
            {$push: { cutoff: {cutoff_year:cutoff_year, cutoff_category:cutoff_category, round: {region:cutoff_round_region, branch:cutoff_round_branch, cutoff:cutoff_round_cutoff } } } },
            {new: true}, function (err, college) {
@@ -130,6 +173,37 @@ router.post('/',upload.single('upload_file'), function(req, res) {
         var placement_company_statistics_company_name = req.body.placement_company_statistics_company_name;
         var placement_company_statistics_cto = req.body.placement_company_statistics_cto;
 
+        if( !placement_year){
+          return res.send({
+            success :false,
+             message:'Error:placement_year can\'t be Blank'
+          });
+        }
+        if ( !placement_placement_statistics_company_name ){
+          return res.send({
+            success :false,
+             message:'Error:placement_placement_statistics_company_name can\'t be Blank'
+          });
+        }
+        if(!placement_placement_statistics_no_of_offer){
+            return res.send({
+            success :false,
+             message:'Error:placement_placement_statistics_no_of_offer can\'t be Blank'
+          });
+        }
+        if(!placement_company_statistics_company_name){
+          return res.send({
+            success :false,
+             message:'Error:placement_company_statistics_company_name can\'t be Blank'
+          });
+        }
+        if(!placement_company_statistics_cto){
+          return res.send({
+            success :false,
+             message:'Error:placement_company_statistics_cto can\'t be Blank'
+          });
+        }
+
           College.findByIdAndUpdate(req.params.id,
             {$push: { placement: {year:placement_year,placement_statistics:{company_name:placement_placement_statistics_company_name, no_of_offer:placement_placement_statistics_no_of_offer},company_statistics:{company_name:placement_company_statistics_company_name, cto:placement_company_statistics_cto}} } },
             {new: true}, function (err, college) {
@@ -142,6 +216,19 @@ router.post('/',upload.single('upload_file'), function(req, res) {
 
          var fee_particular = req.body.fee_particular;
          var fee_amount = req.body.fee_amount;
+
+         if( !fee_particular){
+           return res.send({
+             success :false,
+              message:'Error:fee_particular can\'t be Blank'
+           });
+         }
+         if ( !fee_amount){
+           return res.send({
+             success :false,
+              message:'Error:fee_amount can\'t be Blank'
+           });
+         }
 
            College.findByIdAndUpdate(req.params.id,
              {$push: { fee: {particular:fee_particular,fee_amount:fee_amount} } },
@@ -156,6 +243,25 @@ router.post('/',upload.single('upload_file'), function(req, res) {
           var ranking_type = req.body.ranking_type;
           var ranking_givenby = req.body.ranking_givenby;
           var ranking_rank = req.body.ranking_rank;
+
+          if( !ranking_type){
+            return res.send({
+              success :false,
+               message:'Error:ranking_type can\'t be Blank'
+            });
+          }
+          if ( !ranking_givenby){
+            return res.send({
+              success :false,
+               message:'Error:ranking_givenby can\'t be Blank'
+            });
+          }
+          if ( !ranking_rank ){
+            return res.send({
+              success :false,
+               message:'Error:ranking_rank can\'t be Blank'
+            });
+          }
 
             College.findByIdAndUpdate(req.params.id,
               {$push: { ranking: {rank_type:ranking_type,ranking_givenby:ranking_givenby,ranking_rank:ranking_rank} } },
