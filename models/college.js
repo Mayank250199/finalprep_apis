@@ -6,8 +6,10 @@ var CollegeSchema = new mongoose.Schema({
     default: ''
   },
   profile_pic:[{
+    pic: {
       type:String,
-    default: ''
+      default: ''
+    }
 }],
 establishment: {
       type: String,
