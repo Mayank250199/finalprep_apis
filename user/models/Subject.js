@@ -5,6 +5,10 @@ var SubjectSchema = new mongoose.Schema({
     type: String,
     default: ''
   },
+  branch: {
+    type: String,
+    default: ''
+  },
   fileName:{
       type: String,
       default: ''

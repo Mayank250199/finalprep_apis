@@ -1,0 +1,114 @@
+
+<% include partials/header %>
+
+
+<div class="breadcrumbs">
+<a href="/admin/">Home</a>
+&rsaquo; <a href="/admin/django_backend/">Node_Backend</a>
+&rsaquo; <a href="/admin/django_backend/selflearning/">Notes</a>
+&rsaquo; Notes
+</div>
+
+    <!-- Content -->
+    <div id="content" class="colM">
+
+        <h1>Add self learning</h1>
+        <div id="content-main">
+
+
+
+<form enctype="multipart/form-data" action="/admin/notes/add" method="post" id="selflearning_form" novalidate>
+
+  <fieldset class="module aligned ">
+
+
+
+        </div>
+
+        <div class="form-row field-SLLecturePlan">
+
+
+                <div>
+                        <label class="required" for="branch">Branch:</label>
+
+                            <input type="text" name="branch"  required class="vTextField" maxlength="300" />
+
+
+              </div>
+
+        </div>
+
+        <div class="form-row field-SLLecturePlan">
+
+
+                <div>
+                            <label class="required" for="Semester">Semester:</label>
+
+                                <input type="number" name="semester"  required class="vTextField" maxlength="8" />
+
+                              </div>
+
+                        </div>
+
+
+                                <label class="required" for="subject">Subject</label>
+
+                                    <input type="text" name="subject"  required class="vTextField" maxlength="300" />
+
+                                    <label class="required" for="Filename">FileName</label>
+
+                                        <input type="text" name="fileName" id="branch" required class="vTextField" maxlength="300" />
+
+                                        <label class="required" for="upload_file">File:</label>
+
+                                            <input type="file" name="upload_file" id="branch" required class="vTextField" maxlength="300" />
+
+                </div>
+
+</fieldset>
+
+
+
+
+
+<div class="submit-row">
+<input type="submit" value="Save" class="default" name="_save" />
+
+
+<input type="submit" value="Save and add another" name="_addanother" />
+<input type="submit" value="Save and continue editing" name="_continue" />
+</div>
+
+
+
+    <script type="text/javascript"
+            id="node-admin-form-add-constants"
+            src="/public/admin/js/change_form.js"
+
+                data-model-name="selflearning"
+            >
+    </script>
+
+
+
+
+<script type="text/javascript"
+        id="node-admin-prepopulated-fields-constants"
+        src="/public/admin/js/prepopulate_init.js"
+        data-prepopulated-fields="[]">
+</script>
+
+
+</div>
+</form></div>
+
+
+        <br class="clear" />
+    </div>
+    <!-- END Content -->
+
+    <div id="footer"></div>
+</div>
+<!-- END Container -->
+
+<% include partials/footer %>

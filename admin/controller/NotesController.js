@@ -23,7 +23,7 @@ var upload = multer({ storage : storage});
 
 
 /** API for single file upload */
-router.post('/notes',upload.single('upload_file'), function(req, res) {
+router.post('/notes/add',upload.single('upload_file'), function(req, res) {
 
   if(!req.file){
       return res.send({
@@ -35,7 +35,7 @@ router.post('/notes',upload.single('upload_file'), function(req, res) {
   var semester = req.body.semester;
   var fileName = req.body.fileName;
   var filepath = req.file.path;
-
+  var branch = req.body.branch;
 
   if( !subject ){
     return res.send({
@@ -61,6 +61,7 @@ router.post('/notes',upload.single('upload_file'), function(req, res) {
     newSubject.semester = semester;
     newSubject.fileName = fileName;
     newSubject.filepath = filepath;
+    newSubject.branch = branch;
     newSubject.save((err,user) =>{
 
         res.redirect('/notes');
@@ -74,6 +75,12 @@ router.get('/notes',function(req,res){
       Subject.find({}, function (err, subjects) {
           res.render('notes',{subjects})
       });
+})
+
+router.get('/notes/add',function(req,res){
+  // RETURNS ALL THE USERS IN THE DATABASE
+
+    res.render('addNotes');
 })
 
 module.exports = router;

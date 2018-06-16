@@ -35,6 +35,7 @@ router.post('/',upload.single('upload_file'), function(req, res) {
   var semester = req.body.semester;
   var fileName = req.body.fileName;
   var filepath = req.file.path;
+  var branch= req.body.branch;
 
 
   if( !subject ){
@@ -55,12 +56,19 @@ router.post('/',upload.single('upload_file'), function(req, res) {
        message:'Error:fileName can\'t be Blank'
     });
   }
+  if(!branch){
+      return res.send({
+      success :false,
+       message:'Error:branch can\'t be Blank'
+    });
+  }
 
       const newSubject = new Subject();
     newSubject.subject = subject;
     newSubject.semester = semester;
     newSubject.fileName = fileName;
     newSubject.filepath = filepath;
+    newSubject.branch = branch;
     newSubject.save((err,user) =>{
       if(err){
         return res.send({
