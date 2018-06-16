@@ -1,5 +1,48 @@
 <% include partials/header %>
 
+<body class=" dashboard"
+  data-admin-utc-offset="19800">
+
+<!-- Container -->
+<div id="container">
+
+
+    <!-- Header -->
+    <div id="header">
+        <div id="branding">
+
+<h1 id="site-name"><a href="/admin/">Node administration</a></h1>
+
+        </div>
+
+
+        <div id="user-tools">
+
+                Welcome,
+                <strong><%= name %></strong>.
+
+
+
+                    <a href="/">View site</a> /
+
+
+
+
+
+
+                <a href="/admin/password_change/">Change password</a> /
+
+                <a href="/admin/logout/">Log out</a>
+
+        </div>
+
+
+
+    </div>
+    <!-- END Header -->
+
+
+
 <!-- Content -->
   <div id="content" class="colMS">
 
@@ -8,24 +51,23 @@
 <div id="content-main">
 
 
-
       <div class="app-authtoken module">
       <table>
       <caption>
-          <a href="/admin/authtoken/" class="section" title="Models in the Auth Token application">Auth Token</a>
+          <a href="/admin/" class="section" title="Models in the Auth Token application">Auth Token</a>
       </caption>
 
           <tr class="model-token">
 
-              <th scope="row"><a href="/admin/authtoken/token/">Tokens</a></th>
+              <th scope="row"><a href="/admin/">Tokens</a></th>
 
 
 
-              <td><a href="/admin/authtoken/token/add/" class="addlink">Add</a></td>
+              <td><a href="/admin/" class="addlink">Add</a></td>
 
 
 
-              <td><a href="/admin/authtoken/token/" class="changelink">Change</a></td>
+              <td><a href="/admin/" class="changelink">Change</a></td>
 
           </tr>
 
@@ -91,7 +133,7 @@
 
           <tr class="model-achivementlist">
 
-              <th scope="row"><a href="/">Achivementlists</a></th>
+              <th scope="row"><a href="/admin/notes">Notes</a></th>
 
 
 

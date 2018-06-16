@@ -1,4 +1,4 @@
-/*global gettext, interpolate, ngettext*/
+
 (function($) {
     'use strict';
     var lastChecked;

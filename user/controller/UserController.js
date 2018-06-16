@@ -17,25 +17,25 @@ var password = req.body.password;
   if( !firstname){
     return res.send({
       success :false,
-       message:'Error:FirstName can\'t be Blank'
+       message:'Error:firstname can\'t be Blank'
     });
   }
   if ( !lastname ){
     return res.send({
       success :false,
-       message:'Error:LastName can\'t be Blank'
+       message:'Error:lastname can\'t be Blank'
     });
   }
   if(!email){
       return res.send({
       success :false,
-       message:'Error:Email can\'t be Blank'
+       message:'Error:email can\'t be Blank'
     });
   }
   if(!password){
     return res.send({
       success :false,
-       message:'Error:Password can\'t be Blank'
+       message:'Error:password can\'t be Blank'
     });
   }
 

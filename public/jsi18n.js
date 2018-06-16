@@ -1,5 +1,3 @@
-
-
 (function(globals) {
 
   var node = globals.node || (globals.node = {});
@@ -7,8 +5,6 @@
 
   node.pluralidx = function(count) { return (count == 1) ? 0 : 1; };
 
-
-  /* gettext library */
 
   node.catalog = node.catalog || {};
 

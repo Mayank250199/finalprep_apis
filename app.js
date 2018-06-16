@@ -33,6 +33,9 @@ app.use('/api/college', CollegeController);
 var AdminController = require(__root + 'admin/controller/LoginController');
 app.use('/admin', AdminController);
 
+var NotesController = require(__root + 'admin/controller/NotesController');
+app.use('/admin', NotesController);
+
 
 var port = process.env.PORT || 4000;
 

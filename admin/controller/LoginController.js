@@ -11,66 +11,34 @@ var User = require(__root + 'user/models/User');
 /**
  * Configure JWT
  */
-var jwt = require('jsonwebtoken'); // used to create, sign, and verify tokens
+var jwt = require('jsonwebtoken');
 var bcrypt = require('bcryptjs');
-var config = require(__root +'config'); // get config file
+var config = require(__root +'config');
 
 router.post('/login', function(req, res) {
 
   User.findOne({ email: req.body.email }, function (err, user) {
-    if (err) return res.status(500).send('Error on the server.');
-    if (!user) return res.status(404).send('No user found.');
+    if (err) return res.render('login');
+    if (!user) return res.render('login');
 
     // check if the password is valid
     var passwordIsValid = bcrypt.compareSync(req.body.password, user.password);
-    if (!passwordIsValid) return res.status(401).send({ auth: false, token: null });
+    if (!passwordIsValid) return res.render('login');
 
     // if user is found and password is valid
     // create a token
     var token = jwt.sign({ id: user._id }, config.secret);
 
     // return the information including token as JSON
-    res.status(200).send({ userid: user._id, name:user.firstname, token: token });
+    res.render('index',{ userid: user._id, name:user.firstname, token: token });
   });
 
 });
 
 router.get('/logout', function(req, res) {
-  res.status(200).send({ auth: false, token: null });
+  res.render('login');
 });
 
-router.post('/register', function(req, res) {
-
-  var hashedPassword = bcrypt.hashSync(req.body.password, 8);
-
-  User.create({
-    name : req.body.name,
-    email : req.body.email,
-    password : hashedPassword
-  },
-  function (err, user) {
-    if (err) return res.status(500).send("There was a problem registering the user`.");
-
-    // if user is registered without errors
-    // create a token
-    var token = jwt.sign({ id: user._id }, config.secret, {
-      expiresIn: 86400 // expires in 24 hours
-    });
-
-    res.status(200).send({ auth: true, token: token });
-  });
-
-});
-
-router.get('/me', VerifyToken, function(req, res, next) {
-
-  User.findById(req.userId, { password: 0 }, function (err, user) {
-    if (err) return res.status(500).send("There was a problem finding the user.");
-    if (!user) return res.status(404).send("No user found.");
-    res.status(200).send(user);
-  });
-
-});
 
 router.get('/login',function(req, res){
   res.render('login')

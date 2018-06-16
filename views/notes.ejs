@@ -1,12 +1,7 @@
 <link rel="stylesheet" type="text/css" href="/admin/css/changelists.css" />
 
 
-  <script type="text/javascript" src="/admin/jsi18n/"></script>
-
-
-
-
-
+  <script type="text/javascript" src="/jsi18n"></script>
 
 
 <script type="text/javascript" src="/admin/js/core.js"></script>
@@ -23,14 +18,14 @@
 <div class="breadcrumbs">
 <a href="/">Home</a>
 &rsaquo; <a href="/">Node_Backend</a>
-&rsaquo; Self learnings
+&rsaquo; Notes
 </div>
 
 
     <!-- Content -->
     <div id="content" class="flex">
 
-        <h1>Select self learning to change</h1>
+        <h1>Select Notes to change</h1>
 
   <div id="content-main">
 
@@ -40,7 +35,7 @@
             <li>
 
               <a href="/admin/django_backend/selflearning/add/" class="addlink">
-                Add self learning
+                Add Notes
               </a>
             </li>
 
@@ -52,7 +47,7 @@
 
 
 
-      <form id="changelist-form" method="post" novalidate><input type='hidden' name='csrfmiddlewaretoken' value='Cq3CIKozbRSH2dO37BOikHLmwskugkFoH1g2V9ML3jurYYTXzlfCnY6MTSFPfrKe' />
+      <form id="changelist-form" method="post" novalidate>
 
 
 
@@ -61,7 +56,7 @@
     <label>Action: <select name="action" required>
   <option value="" selected>---------</option>
 
-  <option value="delete_selected">Delete selected self learnings</option>
+  <option value="delete_selected">Delete selected Notes</option>
 
 </select></label><input type="hidden" name="select_across" value="0" class="select-across" />
     <button type="submit" class="button" title="Run the selected action" name="index" value="0">Go</button>
@@ -86,23 +81,21 @@
 </th>
 <th scope="col"  class="column-__str__">
 
-   <div class="text"><span>Self learning</span></div>
+   <div class="text"><span>Notes</span></div>
    <div class="clear"></div>
 </th>
 </tr>
 </thead>
 <tbody>
 
+<% subjects.forEach(function(subject){ %>
 
-<tr class="row1"><td class="action-checkbox"><input type="checkbox" name="_selected_action" value="5" class="action-select" /></td><th class="field-__str__"><a href="/admin/django_backend/selflearning/5/change/">finalprep.herokuapp.com</a></th></tr>
+<tr class="row1"><td class="action-checkbox"><input type="checkbox" name="_selected_action" value="5" class="action-select" /></td><th class="field-__str__"><a href="/admin/django_backend/notes/<%= subject._id %>/change/"><%= subject.fileName %></a></th></tr>
 
+<% }) %>
 </tbody>
 </table>
 </div>
-
-
-
-
 
 
 <p class="paginator">
