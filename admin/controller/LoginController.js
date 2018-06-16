@@ -2,18 +2,18 @@ var express = require('express');
 var router = express.Router();
 var bodyParser = require('body-parser');
 
-var VerifyToken = require('./VerifyToken');
+var VerifyToken = require('../VerifyToken');
 
 router.use(bodyParser.urlencoded({ extended: false }));
 router.use(bodyParser.json());
-var User = require(__root + 'models/User');
+var User = require(__root + 'user/models/User');
 
 /**
  * Configure JWT
  */
 var jwt = require('jsonwebtoken'); // used to create, sign, and verify tokens
 var bcrypt = require('bcryptjs');
-var config = require('../config'); // get config file
+var config = require(__root +'config'); // get config file
 
 router.post('/login', function(req, res) {
 
@@ -71,5 +71,9 @@ router.get('/me', VerifyToken, function(req, res, next) {
   });
 
 });
+
+router.get('/login',function(req, res){
+  res.render('login')
+})
 
 module.exports = router;

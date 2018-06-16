@@ -1,0 +1,123 @@
+
+<% include partials/header %>
+
+
+<div class="breadcrumbs">
+<a href="/admin/">Home</a>
+&rsaquo; <a href="/admin/django_backend/">Django_Backend</a>
+&rsaquo; <a href="/admin/django_backend/selflearning/">Self learnings</a>
+&rsaquo; Add self learning
+</div>
+
+    <!-- Content -->
+    <div id="content" class="colM">
+
+        <h1>Add self learning</h1>
+        <div id="content-main">
+
+
+
+<form enctype="multipart/form-data" action="" method="post" id="selflearning_form" novalidate><input type='hidden' name='csrfmiddlewaretoken' value='ItL889za1qi70KBohRtXdQ5IZcb60yAsN4YylyXmTSURWvGiJBUhg7q8mCwrZFFi' />
+<div>
+
+
+
+
+  <fieldset class="module aligned ">
+
+
+
+        <div class="form-row field-branch">
+
+
+                <div>
+
+
+                        <label class="required" for="id_branch">Branch:</label>
+
+                            <div class="related-widget-wrapper">
+    <select name="branch" required id="id_branch">
+  <option value="" selected>---------</option>
+
+  <option value="1">CSE</option>
+
+
+</select>
+
+        <a class="related-widget-wrapper-link change-related" id="change_id_branch"
+            data-href-template="/admin/django_backend/branch/__fk__/change/?_to_field=id&amp;_popup=1"
+            title="Change selected branch"><img src="/public/admin/img/icon-changelink.svg" alt="Change"/></a><a class="related-widget-wrapper-link add-related" id="add_id_branch"
+            href="/admin/django_backend/branch/add/?_to_field=id&amp;_popup=1"
+            title="Add another branch"><img src="/public/admin/img/icon-addlink.svg" alt="Add"/></a>
+
+</div>
+
+
+
+                </div>
+
+        </div>
+
+        <div class="form-row field-SLLecturePlan">
+
+
+                <div>
+
+
+                        <label class="required" for="id_SLLecturePlan">SLLecturePlan:</label>
+
+                            <input type="text" name="SLLecturePlan" id="id_SLLecturePlan" required class="vTextField" maxlength="300" />
+
+
+
+                </div>
+
+        </div>
+
+</fieldset>
+
+
+
+
+
+<div class="submit-row">
+<input type="submit" value="Save" class="default" name="_save" />
+
+
+<input type="submit" value="Save and add another" name="_addanother" />
+<input type="submit" value="Save and continue editing" name="_continue" />
+</div>
+
+
+
+    <script type="text/javascript"
+            id="node-admin-form-add-constants"
+            src="/public/admin/js/change_form.js"
+
+                data-model-name="selflearning"
+            >
+    </script>
+
+
+
+
+<script type="text/javascript"
+        id="node-admin-prepopulated-fields-constants"
+        src="/public/admin/js/prepopulate_init.js"
+        data-prepopulated-fields="[]">
+</script>
+
+
+</div>
+</form></div>
+
+
+        <br class="clear" />
+    </div>
+    <!-- END Content -->
+
+    <div id="footer"></div>
+</div>
+<!-- END Container -->
+
+<% include partials/footer %>

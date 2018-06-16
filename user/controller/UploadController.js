@@ -4,15 +4,15 @@ var bodyParser = require('body-parser');
 var multer = require('multer');
 var fs = require("fs");
 
-var VerifyToken = require(__root + 'auth/VerifyToken');
+var VerifyToken = require(__root + 'user/auth/VerifyToken');
 
 router.use(bodyParser.urlencoded({ extended: false }));
-var Subject = require(__root + 'models/Subject');
+var Subject = require(__root + 'user/models/Subject');
 
 //storage method in multer
 var storage =   multer.diskStorage({
   destination: function (req, file, callback) {
-    callback(null, './uploads/Notes');
+    callback(null, __root + './uploads/Notes');
   },
   filename: function (req, file, callback) {
     callback(null,  Date.now()+ '-' +file.originalname);
